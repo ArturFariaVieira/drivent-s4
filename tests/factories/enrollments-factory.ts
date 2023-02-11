@@ -8,7 +8,7 @@ import { prisma } from "@/config";
 export async function createEnrollmentWithAddress(user?: User) {
   const incomingUser = user || (await createUser());
 
-  return prisma.enrollment.create({
+  return await prisma.enrollment.create({
     data: {
       name: faker.name.findName(),
       cpf: generateCPF(),

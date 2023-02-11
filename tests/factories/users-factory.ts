@@ -7,7 +7,7 @@ export async function createUser(params: Partial<User> = {}): Promise<User> {
   const incomingPassword = params.password || faker.internet.password(6);
   const hashedPassword = await bcrypt.hash(incomingPassword, 10);
 
-  return prisma.user.create({
+  return await prisma.user.create({
     data: {
       email: params.email || faker.internet.email(),
       password: hashedPassword,
